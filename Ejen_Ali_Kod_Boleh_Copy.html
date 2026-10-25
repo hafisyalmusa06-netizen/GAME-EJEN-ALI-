@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ejen Ali - Operasi Kod Masa</title>
+<style>
+:root{--bg:#10070d;--panel:#24101a;--red:#ff435a;--blue:#38d5ff;--text:#fff4f6;--muted:#d2aeb8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 80% 0,#4b1326,transparent 48%),#10070d;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background:linear-gradient(#ff53651c 1px,transparent 1px),linear-gradient(90deg,#ff53651c 1px,transparent 1px);background-size:45px 45px}
+header{position:relative;z-index:2;max-width:1240px;margin:auto;padding:15px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:900;letter-spacing:1px}.brand b{color:var(--red)}.sub{font-size:11px;color:var(--blue);letter-spacing:2px}header .tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+button{cursor:pointer;border:1px solid #ad4559;border-radius:11px;background:#351522;color:white;font-weight:800;padding:11px 17px;transition:.2s}button:hover{transform:translateY(-2px);border-color:#ff8492}button:disabled{opacity:.4;cursor:not-allowed;transform:none}.primary{background:linear-gradient(120deg,#ff6772,#d51a39);border:0}.secondary{border-color:#47728b;background:#122b41}.tiny{font-size:12px;padding:9px 12px}
+.layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;padding:0 22px 40px}main{min-width:0}.panel{background:linear-gradient(145deg,#29131eeb,#140a10f5);border:1px solid #813d50;border-radius:20px;padding:24px;box-shadow:0 20px 48px #0006}.side{align-self:start;position:sticky;top:15px}
+h1,h2,h3{line-height:1.05;margin:0 0 14px}h1{font-size:clamp(50px,8vw,100px);letter-spacing:-2px}h2{font-size:clamp(27px,4vw,45px)}p{line-height:1.6;color:#f1ced7}.muted{color:var(--muted)}.eyebrow{color:var(--red);font-size:12px;letter-spacing:2px;font-weight:bold}.tag{display:inline-block;border:1px solid #7b4655;padding:5px 9px;border-radius:7px;font-size:11px;color:#ffd5dd;margin:3px}
+.hero{position:relative;overflow:hidden;min-height:550px;display:flex;align-items:center;background:linear-gradient(90deg,#10070df2,#10070d77),radial-gradient(circle at 78% 35%,#f54a604d,transparent 43%),url('hero.png') center/cover no-repeat,#1a0d18}.hero:before{content:"◉";position:absolute;right:4%;top:5%;font-size:350px;line-height:1;color:#f6444d11;animation:pulse 5s infinite alternate}.hero>*{position:relative}.hero p{max-width:560px;font-size:18px}.hero h1 span{color:var(--red)}.hero h1 em{font-style:normal;color:#ffcc55}
+@keyframes pulse{to{transform:scale(1.16) rotate(16deg);opacity:.6}}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.progress{height:10px;background:#4b1a2b;border-radius:50px;overflow:hidden;margin:12px 0}.progress div{height:100%;background:linear-gradient(90deg,var(--red),#ffcc55)}.track{padding:12px 0;border-bottom:1px solid #6c394a;font-size:13px}
+.story-art{min-height:290px;display:grid;place-items:center;text-align:center;font-size:90px;border:1px solid #44718d;border-radius:20px;background:radial-gradient(circle at 70% 20%,#204978,#111a31 60%,#18080e)}.story-art p{font-size:14px;margin:4px}.story-line{border-left:5px solid #ffc94b;padding:14px 20px;margin-top:15px;background:#132d44;border-radius:8px}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mission{padding:0;overflow:hidden}.mission .pic{height:178px;display:grid;place-items:center;font-size:60px;background:linear-gradient(135deg,#112b4d,#5d122c);position:relative}.mission .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.mission .details{padding:16px}.mission h3{font-size:23px}.mission p{font-size:14px}.mission.locked{filter:grayscale(.7);opacity:.62}
+.backrow{display:flex;justify-content:flex-start;margin:0 0 13px}.table{width:100%;border-collapse:collapse;margin:16px 0}.table th,.table td{padding:13px 10px;border:1px solid #784455;text-align:left}.table th{background:#551f30}.question{border:1px solid #7c3e50;padding:22px;background:#1b0d15;border-radius:15px;margin-top:15px}.options{display:grid;gap:10px}.option{text-align:left;font-size:15px}.option:hover{background:#642239}input{display:block;width:100%;padding:15px 13px;background:#170a13;border:2px solid #ec5068;border-radius:10px;color:white;font:inherit;margin:12px 0}.feedback{padding:13px 16px;margin:12px 0;border-radius:10px;background:#18392d;color:#99ffd4;font-weight:bold}.feedback.bad{background:#481924;color:#ffc8cf}.certificate{text-align:center;border:7px double #e0b758;border-radius:20px;padding:25px;background:#f9e9c5;color:#48252b}.certificate p{color:#48252b}.certificate h2{color:#7b2730}.hidden{display:none!important}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.side{position:static;order:2}.mission-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:550px){.layout{padding:0 12px 24px}.panel{padding:17px}.mission-grid{grid-template-columns:1fr}.hero{min-height:490px}.brand{font-size:19px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div><div class="brand">◈ M.A.T.A. <b>ACADEMY</b></div><div class="sub">OPERASI KOD MASA • TAHUN 3</div></div>
+ <div class="tools"><strong id="xpTop">⭐ 0 XP</strong><button class="tiny" id="musicBtn" onclick="toggleMusic()">♫ MUZIK: OFF</button><button class="tiny" onclick="resetGame()">↻ RESET</button></div>
+</header>
+<div class="layout"><main id="app"></main><aside id="sidebar" class="panel side"></aside></div>
+<!-- Letakkan Opening.mp3 dalam folder sama jika mahu muzik dimainkan. -->
+<audio id="music" src="Opening.mp3" preload="none" loop></audio>
+<script>
+const KEY='ejen_ali_kod_masa_salin_v1';
+const missions=[
+ {title:'Jadual Rahsia MATA',sub:'Baca jadual operasi',emoji:'📋',img:'misi01.png',sp:'5.1.1'},
+ {title:'Jejak Masa Ejen Ali',sub:'Masa sebelum, semasa dan selepas',emoji:'🕒',img:'misi02.png',sp:'5.1.2'},
+ {title:'Kejar Masa di Cyberaya',sub:'Jadual perjalanan tren',emoji:'🚆',img:'misi03.png',sp:'5.1.1 & 5.1.2'},
+ {title:'Selamatkan MATA!',sub:'Nyahaktifkan tiga kunci',emoji:'🔐',img:'misi04.png',sp:'5.1.1 & 5.1.2'}
+];
+const questions=[
+ [
+  {q:'Pukul berapakah latihan IRIS bermula?',a:['8:00 pagi','8:30 pagi','9:00 pagi'],ok:1,h:'Cari baris Latihan IRIS dalam jadual.'},
+  {q:'Apakah aktiviti pada pukul 9:00 pagi?',a:['Pemeriksaan alat','Taklimat MATA','Bergerak ke Cyberaya'],ok:0,h:'Cari pukul 9:00 pagi pada jadual.'},
+  {q:'Bila Ali bergerak ke Cyberaya?',a:['8:30 pagi','9:00 pagi','9:30 pagi'],ok:2,h:'Lihat baris terakhir jadual.'}
+ ],
+ [
+  {q:'Latihan IRIS bermula pada 8:30 pagi. Pukul 8:15 pagi ialah...',a:['Sebelum latihan','Semasa latihan','Selepas latihan'],ok:0,h:'8:15 lebih awal daripada 8:30.'},
+  {q:'Latihan IRIS bermula 8:30 pagi dan tamat 9:00 pagi. Pukul 8:45 pagi ialah...',a:['Selepas','Sebelum','Semasa'],ok:2,h:'8:45 berada di antara 8:30 dan 9:00.'},
+  {q:'Catat masa selepas latihan apabila Ali berehat.',input:true,answer:'9:15',h:'Masa rehat bermula pada 9:15 pagi.'}
+ ],
+ [
+  {q:'Ali tiba di stesen pada 9:10 pagi dan mesti sampai sebelum 10:00 pagi. Tren mana paling sesuai?',a:['Tren A','Tren B','Tren C'],ok:1,h:'Tren A sudah bertolak dan Tren C tiba tepat pada 10:00.'},
+  {q:'Apakah waktu ketibaan Tren B?',a:['9:30 pagi','9:45 pagi','10:00 pagi'],ok:1,h:'Cari lajur waktu tiba pada baris Tren B.'},
+  {q:'Pukul 9:30 pagi ketika Ali menaiki Tren B ialah waktu...',a:['Semasa perjalanan','Sebelum perjalanan','Selepas perjalanan'],ok:0,h:'Tren B bergerak dari 9:15 hingga 9:45 pagi.'}
+ ],
+ [
+  {q:'Pemeriksaan alat MATA dijalankan pada pukul...',a:['8:00 pagi','9:00 pagi','9:30 pagi'],ok:1,h:'Semak jadual Misi 01.'},
+  {q:'Ali mengakses sistem dari 9:10–9:40 pagi. Pukul 9:20 ialah...',a:['Selepas operasi','Semasa operasi','Sebelum operasi'],ok:1,h:'9:20 di antara masa mula dan tamat.'},
+  {q:'Masukkan waktu ketibaan Tren B sebagai kod akhir.',input:true,answer:'9:45',h:'Semak jadual perjalanan dalam Misi 03.'}
+ ]
+];
+const initial=()=>({name:'',screen:'home',story:0,mission:0,step:0,done:[false,false,false,false],earned:{},xp:0});
+let state;try{state={...initial(),...(JSON.parse(localStorage.getItem(KEY))||{}),screen:'home'}}catch{state=initial()}
+let trail=[],feedback=null;
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function go(screen,extra={}){trail.push({...state,done:[...state.done],earned:{...state.earned}});state={...state,screen,...extra};feedback=null;render();window.scrollTo(0,0)}
+function back(){if(!trail.length)return;state=trail.pop();feedback=null;render();window.scrollTo(0,0)}
+function button(label,action,cls=''){return `<button class="${cls}" onclick="${action}">${label}</button>`}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function table(rows,heads){return `<table class="table"><thead><tr>${heads.map(v=>`<th>${v}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table>`}
+function nav(){return `<div class="backrow">${trail.length?button('← KEMBALI','back()','secondary'):''}</div>`}
+function home(){return `<section class="panel hero"><div><div class="eyebrow">MISI AKADEMI M.A.T.A. / AKSES EJEN</div><h1>OPERASI<br><span>KOD</span> <em>MASA</em></h1><span class="tag">🚨 AMARAN: SISTEM MASA TELAH DIGODAM</span><p>Cyberaya dalam bahaya! Bantu Ejen Ali membaca jadual, merekod masa dan menyelamatkan sistem keselamatan MATA.</p><div class="actions">${button('⚡ MULAKAN MISI','go("story",{story:0})','primary')}${button('🎮 CARA BERMAIN','guide()','secondary')}</div><p><span class="tag">4 MISI</span><span class="tag">15–20 MINIT</span><span class="tag">MATEMATIK TAHUN 3</span></p></div></section>`}
+const scenes=[
+ ['🚨','SISTEM MATA','Amaran merah! Jadual operasi MATA telah digodam. Cyberaya memerlukan bantuan.'],
+ ['🥽','EJEN ALI','Semua rekod masa hilang! Aku perlukan ejen pelatih yang pandai membaca jadual!'],
+ ['📡','EJEN ALICIA','Selesaikan tiga misi untuk mendapatkan kod masa dan menyelamatkan MATA!']
+];
+function story(){const a=scenes[state.story];return `${nav()}<section class="panel"><div class="eyebrow">KOMIK PENGENALAN • BABAK ${state.story+1}/3</div><h2>OPERASI KOD MASA</h2><div class="story-art"><div>${a[0]}<p>HQ MATA • CYBERAYA</p></div></div><div class="story-line"><b style="color:#ffcc55">${a[1]}</b><p>“${a[2]}”</p></div><div class="actions">${button(state.story===2?'DAFTAR EJEN →':'BABAK SETERUSNYA →',state.story===2?'go("register")':`go("story",{story:${state.story+1}})`,'primary')}</div></section>`}
+function register(){return `${nav()}<section class="panel"><div class="eyebrow">IDENTITI EJEN / AKSES SELAMAT</div><h2>DAFTAR EJEN PELATIH</h2><div class="story-art">🥽</div><h2 style="text-align:center;margin-top:20px">SELAMAT DATANG, EJEN!</h2><p>Masukkan nama kod untuk membuka fail misi dan mendapatkan lencana ejen.</p><label for="agentName">NAMA EJEN PELATIH</label><input id="agentName" maxlength="28" placeholder="Contoh: Ejen Aina" value="${esc(state.name)}"><div class="actions">${button('AKTIFKAN PROFIL EJEN →','registerAgent()','primary')}</div></section>`}
+function registerAgent(){const v=document.getElementById('agentName').value.trim();if(!v){alert('Masukkan nama ejen dahulu.');return}state.name=v;go('map')}
+function map(){return `${nav()}<section class="panel"><div class="eyebrow">M.A.T.A. / PUSAT ARAHAN</div><h2>PETA OPERASI CYBERAYA</h2><p>Selamat kembali, <b>${esc(state.name)}</b>. Selesaikan misi mengikut turutan.</p><div class="mission-grid">${missions.map((m,i)=>{const locked=i>state.done.filter(Boolean).length;return `<article class="panel mission ${locked?'locked':''}"><div class="pic">${m.emoji}<img src="${m.img}" alt="${esc(m.title)}" onerror="this.remove()"></div><div class="details"><span class="eyebrow">MISI ${String(i+1).padStart(2,'0')} • SP ${m.sp}</span><h3>${m.title}</h3><p>${m.sub}</p>${button(state.done[i]?'LIHAT SEMULA →':locked?'🔒 TERKUNCI':'MULAKAN MISI →',`startMission(${i})`,'primary'+(locked?' disabled':''))}</div></article>`}).join('')}</div></section>`}
+function startMission(i){if(i>state.done.filter(Boolean).length)return;go('quiz',{mission:i,step:0})}
+function details(i){if(i===0)return table([['8:00 pagi','Taklimat MATA'],['8:30 pagi','Latihan IRIS'],['9:00 pagi','Pemeriksaan alat'],['9:30 pagi','Bergerak ke Cyberaya']],['MASA','AKTIVITI']);if(i===1)return table([['8:15 pagi','Persediaan (sebelum)'],['8:45 pagi','Latihan IRIS (semasa)'],['9:15 pagi','Rehat (selepas)']],['MASA','KEADAAN']);if(i===2)return table([['A','9:00 pagi','9:30 pagi'],['B','9:15 pagi','9:45 pagi'],['C','9:30 pagi','10:00 pagi']],['TREN','BERTOLAK','TIBA']);return `<p>Masukkan tiga kod masa untuk membuka pintu keselamatan MATA.</p>`}
+function quiz(){const i=state.mission,k=state.step,q=questions[i][k],m=missions[i];const answered=!!state.earned[`${i}-${k}`];return `${nav()}<section class="panel"><div class="eyebrow">MISI ${i+1} • DSKP ${m.sp}</div><h2>${m.title}</h2>${details(i)}<div class="question"><span class="eyebrow">CABARAN ${k+1} / ${questions[i].length}</span><h3 style="margin-top:14px">${q.q}</h3>${q.input?`<label for="timeAnswer">REKOD MASA (JAM:MINIT)</label><input id="timeAnswer" placeholder="Contoh: 9:15" ${answered?'disabled':''}>${button('HANTAR KOD','checkAnswer(null)','primary')}`:`<div class="options">${q.a.map((x,j)=>button(`${'ABC'[j]}. ${x}`,`checkAnswer(${j})`,'option')).join('')}</div>`}${feedback?`<div class="feedback ${feedback.good?'':'bad'}">${feedback.message}</div>`:''}<div class="actions">${button('💡 BANTUAN IRIS','hint()','secondary')}${answered?button(k===2?'SELESAIKAN MISI →':'CABARAN SETERUSNYA →','nextQuestion()','primary'):''}</div></div></section>`}
+function checkAnswer(selected){const i=state.mission,k=state.step,q=questions[i][k],key=`${i}-${k}`;if(state.earned[key])return;const value=q.input?(document.getElementById('timeAnswer').value.trim().replace(/\s*(pagi|am)/gi,'')):selected;const yes=q.input?value===q.answer:value===q.ok;if(yes){state.earned[key]=true;state.xp+=100;feedback={good:true,message:'✅ Kod diterima! +100 XP. Teruskan misi.'}}else{feedback={good:false,message:'⚠ Belum tepat. Cuba semula atau minta bantuan IRIS.'}}render()}
+function hint(){alert(questions[state.mission][state.step].h)}
+function nextQuestion(){const i=state.mission,k=state.step;if(!state.earned[`${i}-${k}`])return;if(k<questions[i].length-1){go('quiz',{step:k+1})}else{state.done[i]=true;if(i===3){go('victory')}else{go('map')}}}
+function victory(){return `${nav()}<section class="panel"><div class="certificate"><div style="font-size:65px">🏆</div><h2>MISI BERJAYA!</h2><p>Dengan bangganya dianugerahkan kepada</p><h2>${esc(state.name)}</h2><p>kerana berjaya menamatkan Operasi Kod Masa dan menguasai kemahiran membaca jadual serta merekod masa.</p><h3>${state.xp} XP • EJEN ELIT MATA</h3></div><div class="actions">${button('CETAK SIJIL','window.print()','primary')}${button('KEMBALI KE PETA','go("map")','secondary')}</div></section>`}
+function guide(){alert('Baca komik, daftar nama, selesaikan 3 misi Matematik dan buka 3 kod keselamatan dalam misi akhir. Gunakan butang Kembali untuk melihat skrin sebelumnya.')}
+function toggleMusic(){const a=document.getElementById('music');if(a.paused){a.play().then(()=>updateMusic()).catch(()=>alert('Letakkan fail Opening.mp3 dalam folder yang sama dengan HTML.'))}else{a.pause();updateMusic()}}
+function updateMusic(){document.getElementById('musicBtn').textContent=document.getElementById('music').paused?'♫ MUZIK: OFF':'♫ MUZIK: ON'}
+function resetGame(){if(!confirm('Mulakan game baharu dengan 0 XP?'))return;state=initial();trail=[];feedback=null;save();render()}
+function render(){let pct=state.done.filter(Boolean).length*25;document.getElementById('xpTop').textContent=`⭐ ${state.xp} XP`;document.getElementById('sidebar').innerHTML=`<div class="eyebrow">◈ REKOD EJEN</div><h3 style="margin-top:17px">🥽 ${esc(state.name||'Ejen Pelatih')}</h3><small class="muted">${state.xp} Mata XP</small><hr style="border-color:#633044;margin:20px 0"><h3>STATUS OPERASI</h3><div class="progress"><div style="width:${pct}%"></div></div><small>${pct}% misi berjaya dipulihkan</small><hr style="border-color:#633044;margin:20px 0"><h3>PETA PENCAPAIAN</h3>${missions.map((m,i)=>`<div class="track">${state.done[i]?'✅':i+1+'.'} ${m.title}</div>`).join('')}<h4 style="color:var(--red)">OBJEKTIF PEMBELAJARAN</h4><small>Membaca jadual aktiviti serta membaca dan merekod masa sebelum, semasa dan selepas aktiviti.</small>`;document.getElementById('app').innerHTML=({home,story,register,map,quiz,victory}[state.screen]||home)();save()}
+render();
+</script>
+</body>
+</html>
